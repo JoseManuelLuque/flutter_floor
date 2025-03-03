@@ -13,6 +13,7 @@ dependencies:
   floor_generator: ^1.1.0
   floor_annotation: ^1.2.0
   sqflite: ^2.0.0+4
+  sqflite_common_ffi_web: ^0.1.0
   path: ^1.8.0
   path_provider: ^2.0.2
 

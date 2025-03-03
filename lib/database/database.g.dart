@@ -96,7 +96,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Task` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `isCompleted` INTEGER NOT NULL, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `Task` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -121,7 +121,7 @@ class _$TaskDao extends TaskDao {
             (Task item) => <String, Object?>{
                   'id': item.id,
                   'name': item.name,
-                  'isCompleted': item.isCompleted ? 1 : 0
+                  'description': item.description
                 }),
         _taskUpdateAdapter = UpdateAdapter(
             database,
@@ -130,7 +130,7 @@ class _$TaskDao extends TaskDao {
             (Task item) => <String, Object?>{
                   'id': item.id,
                   'name': item.name,
-                  'isCompleted': item.isCompleted ? 1 : 0
+                  'description': item.description
                 }),
         _taskDeletionAdapter = DeletionAdapter(
             database,
@@ -139,7 +139,7 @@ class _$TaskDao extends TaskDao {
             (Task item) => <String, Object?>{
                   'id': item.id,
                   'name': item.name,
-                  'isCompleted': item.isCompleted ? 1 : 0
+                  'description': item.description
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -158,7 +158,7 @@ class _$TaskDao extends TaskDao {
   Future<List<Task>> findAllTasks() async {
     return _queryAdapter.queryList('SELECT * FROM Task',
         mapper: (Map<String, Object?> row) => Task(row['id'] as int,
-            row['name'] as String, (row['isCompleted'] as int) != 0));
+            row['name'] as String, row['description'] as String));
   }
 
   @override

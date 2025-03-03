@@ -1,10 +1,10 @@
-import 'dart:async';
 import 'package:floor/floor.dart';
+import 'dart:async';
 import 'package:sqflite/sqflite.dart' as sqflite;
-import 'task.dart';
-import 'task_dao.dart';
+import '../model/task.dart';
+import '../model/task_dao.dart';
 
-part 'database.g.dart'; // the generated code will be there
+part 'database.g.dart'; // El archiv generado
 
 @Database(version: 1, entities: [Task])
 abstract class AppDatabase extends FloorDatabase {

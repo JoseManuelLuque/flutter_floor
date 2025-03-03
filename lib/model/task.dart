@@ -5,7 +5,7 @@ class Task {
   @primaryKey
   final int id;
   final String name;
-  final bool isCompleted;
+  final String description;
 
-  Task(this.id, this.name, this.isCompleted);
+  Task(this.id, this.name, this.description);
 }
